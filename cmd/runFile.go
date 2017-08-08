@@ -12,10 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package cmd
 
-import "github.com/dpaolella/areal-reagg/cmd"
+import (
+	"github.com/dpaolella/areal-reagg/areal-reagg"
+	"github.com/spf13/cobra"
+)
 
-func main() {
-	cmd.Execute()
+// runFileCmd represents the runFile command
+var runFileCmd = &cobra.Command{
+	Use:   "runFile",
+	Short: "Run on a single shapefile",
+	Long: `runFile exports data from a shapefile to a
+	a csv of the same name`,
+	Run: func(cmd *cobra.Command, args []string) {
+		arealReagg.Run()
+	},
+}
+
+func init() {
+	RootCmd.AddCommand(runFileCmd)
 }
